@@ -20,5 +20,8 @@ private:
     Ui::MainWindow *ui;
     DrawPanel *drawpanel;
 
+private slots:
+    void on_actionPen_color_triggered();
+
 };
 #endif // MAINWINDOW_H

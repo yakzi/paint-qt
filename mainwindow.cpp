@@ -17,5 +17,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_actionPen_color_triggered()
+{
+    QColor customColor = QColorDialog::getColor(Qt::white, this, QString("Pick a color"), QColorDialog::ShowAlphaChannel);
+    drawpanel->setColor(customColor);
+}
 
 
