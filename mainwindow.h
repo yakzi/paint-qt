@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <drawpanel.h>
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -17,5 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    DrawPanel *drawpanel;
+
 };
 #endif // MAINWINDOW_H
