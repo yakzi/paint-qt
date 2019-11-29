@@ -23,4 +23,11 @@ void MainWindow::on_actionPen_color_triggered()
     drawpanel->setColor(customColor);
 }
 
+void MainWindow::on_actionSave_triggered()
+{
+    QImage saveDrawing = drawpanel->getImage();
+    QString filePath = QFileDialog::getSaveFileName(this, "Save Image", "", "PNG (*.png);;JPEG (*.jpg *.jpeg)");
+    saveDrawing.save(filePath);
+}
+
 

@@ -40,6 +40,7 @@ void DrawPanel::mouseMoveEvent(QMouseEvent *event)
         currentPen.setJoinStyle(Qt::RoundJoin);
         painter.setPen(currentPen);
         painter.drawLine(lastPoint, event->pos());
+        //painter.drawRect(event->pos().x(),event->pos().y(),10,10);
         lastPoint = event->pos();
         update();
     }
@@ -68,6 +69,11 @@ void DrawPanel::resizeEvent(QResizeEvent *event)
 {
     drawPanel = QImage(this->size(), QImage::Format_RGB32);
     drawPanel.fill(Qt::white);
+}
+
+QImage DrawPanel::getImage()
+{
+    return drawPanel;
 }
 
 

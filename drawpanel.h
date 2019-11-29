@@ -21,6 +21,8 @@ public:
     void setColor(QColor setColor);
     void setBrushWidth (int setBrushWidth);
 
+    QImage getImage();
+
 private:
     QImage drawPanel;
     QPoint lastPoint;

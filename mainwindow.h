@@ -3,6 +3,7 @@
 
 #include <drawpanel.h>
 #include <QMainWindow>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,6 +23,7 @@ private:
 
 private slots:
     void on_actionPen_color_triggered();
+    void on_actionSave_triggered();
 
 };
 #endif // MAINWINDOW_H
