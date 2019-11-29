@@ -27,11 +27,24 @@ public:
     QColor getPrevColor() const;
     void setPrevColor(const QColor &value);
 
+    Qt::PenStyle getPenStyle() const;
+    void setPenStyle(const Qt::PenStyle &value);
+
+    Qt::PenCapStyle getCapStyle() const;
+    void setCapStyle(const Qt::PenCapStyle &value);
+
+    Qt::PenJoinStyle getJoinStyle() const;
+    void setJoinStyle(const Qt::PenJoinStyle &value);
+
 private:
     QImage drawPanel;
     QPoint lastPoint;
     QColor currentColor;
     QColor prevColor;
+    Qt::PenStyle penStyle;
+    Qt::PenCapStyle capStyle;
+    Qt::PenJoinStyle joinStyle;
+
     int brushWidth;
     bool isDrawing;
 };

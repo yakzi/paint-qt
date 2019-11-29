@@ -10,11 +10,13 @@ DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
     drawPanel.fill(Qt::white);
     setColor(Qt::black);
     setBrushWidth(1);
+    setPenStyle(Qt::SolidLine);
+    setCapStyle(Qt::RoundCap);
+    setJoinStyle(Qt::RoundJoin);
 }
 
 DrawPanel::~DrawPanel()
 {
-
 }
 
 void DrawPanel::mousePressEvent(QMouseEvent *event)
@@ -32,7 +34,7 @@ void DrawPanel::mouseMoveEvent(QMouseEvent *event)
     {
         QPainter painter(&drawPanel);
         //TODO: ADD POSSIBILITY TO CHANGE LINE STYLE, AND CAP STYLE
-        painter.setPen(QPen(currentColor,brushWidth,Qt::SolidLine,Qt::RoundCap, Qt::RoundJoin));
+        painter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
         painter.drawLine(lastPoint, event->pos());
         //painter.drawRect(event->pos().x(),event->pos().y(),10,10);
         lastPoint = event->pos();
@@ -78,6 +80,36 @@ QColor DrawPanel::getPrevColor() const
 void DrawPanel::setPrevColor(const QColor &value)
 {
     prevColor = value;
+}
+
+Qt::PenStyle DrawPanel::getPenStyle() const
+{
+    return penStyle;
+}
+
+void DrawPanel::setPenStyle(const Qt::PenStyle &value)
+{
+    penStyle = value;
+}
+
+Qt::PenCapStyle DrawPanel::getCapStyle() const
+{
+    return capStyle;
+}
+
+void DrawPanel::setCapStyle(const Qt::PenCapStyle &value)
+{
+    capStyle = value;
+}
+
+Qt::PenJoinStyle DrawPanel::getJoinStyle() const
+{
+    return joinStyle;
+}
+
+void DrawPanel::setJoinStyle(const Qt::PenJoinStyle &value)
+{
+    joinStyle = value;
 }
 
 void DrawPanel::setColor(QColor setColor)

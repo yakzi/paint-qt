@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete drawpanel;
 }
 
 void MainWindow::on_actionPen_color_triggered()
