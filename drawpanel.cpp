@@ -4,14 +4,12 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include<QDebug>
-
 DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
 {
     drawPanel = QImage(this->size(), QImage::Format_RGB32);
     drawPanel.fill(Qt::white);
     setColor(Qt::red);
-    setBrushWidth(2);
+    setBrushWidth(1);
 }
 
 DrawPanel::~DrawPanel()
@@ -32,13 +30,8 @@ void DrawPanel::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && isDrawing == true)
     {
-        QPainter painter(&drawPanel);
-        QPen currentPen;
-        currentPen.setStyle(Qt::SolidLine);
-        currentPen.setColor(currentColor);
-        currentPen.setCapStyle(Qt::RoundCap);
-        currentPen.setJoinStyle(Qt::RoundJoin);
-        painter.setPen(currentPen);
+        QPainter painter(&drawPanel);        
+        painter.setPen(QPen(currentColor,brushWidth,Qt::SolidLine,Qt::RoundCap, Qt::RoundJoin));
         painter.drawLine(lastPoint, event->pos());
         //painter.drawRect(event->pos().x(),event->pos().y(),10,10);
         lastPoint = event->pos();

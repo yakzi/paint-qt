@@ -30,4 +30,10 @@ void MainWindow::on_actionSave_triggered()
     saveDrawing.save(filePath);
 }
 
+void MainWindow::on_actionPen_size_triggered()
+{
+    int size = QInputDialog::getInt(this, "Set pen size", "Pen size", 1, 1, 50, QLineEdit::Normal);
+    drawpanel->setBrushWidth(size);
+}
+
 
