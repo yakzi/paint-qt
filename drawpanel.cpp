@@ -8,7 +8,7 @@ DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
 {
     drawPanel = QImage(this->size(), QImage::Format_RGB32);
     drawPanel.fill(Qt::white);
-    setColor(Qt::red);
+    setColor(Qt::black);
     setBrushWidth(1);
 }
 
@@ -30,7 +30,8 @@ void DrawPanel::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && isDrawing == true)
     {
-        QPainter painter(&drawPanel);        
+        QPainter painter(&drawPanel);
+        //TODO: ADD POSSIBILITY TO CHANGE LINE STYLE, AND CAP STYLE
         painter.setPen(QPen(currentColor,brushWidth,Qt::SolidLine,Qt::RoundCap, Qt::RoundJoin));
         painter.drawLine(lastPoint, event->pos());
         //painter.drawRect(event->pos().x(),event->pos().y(),10,10);
@@ -69,6 +70,15 @@ QImage DrawPanel::getImage()
     return drawPanel;
 }
 
+QColor DrawPanel::getPrevColor() const
+{
+    return prevColor;
+}
+
+void DrawPanel::setPrevColor(const QColor &value)
+{
+    prevColor = value;
+}
 
 void DrawPanel::setColor(QColor setColor)
 {
@@ -78,4 +88,9 @@ void DrawPanel::setColor(QColor setColor)
 void DrawPanel::setBrushWidth(int setBrushWidth)
 {
     brushWidth = setBrushWidth;
+}
+
+QColor DrawPanel::getColor()
+{
+    return currentColor;
 }

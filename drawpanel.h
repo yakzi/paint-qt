@@ -21,12 +21,17 @@ public:
     void setColor(QColor setColor);
     void setBrushWidth (int setBrushWidth);
 
+    QColor getColor();
     QImage getImage();
+
+    QColor getPrevColor() const;
+    void setPrevColor(const QColor &value);
 
 private:
     QImage drawPanel;
     QPoint lastPoint;
     QColor currentColor;
+    QColor prevColor;
     int brushWidth;
     bool isDrawing;
 };

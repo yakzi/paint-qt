@@ -28,6 +28,7 @@ private slots:
     void on_actionPen_color_triggered();
     void on_actionSave_triggered();
     void on_actionPen_size_triggered();
+    void on_actionEraser_triggered();
 
 };
 #endif // MAINWINDOW_H

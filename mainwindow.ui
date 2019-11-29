@@ -99,7 +99,7 @@
   </action>
   <action name="actionPen_size">
    <property name="text">
-    <string>Line width</string>
+    <string>Pen size</string>
    </property>
   </action>
   <action name="actionClose_2">
@@ -123,6 +123,9 @@
    </property>
   </action>
   <action name="actionEraser">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Eraser</string>
    </property>

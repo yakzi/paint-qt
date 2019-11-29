@@ -32,8 +32,28 @@ void MainWindow::on_actionSave_triggered()
 
 void MainWindow::on_actionPen_size_triggered()
 {
-    int size = QInputDialog::getInt(this, "Set pen size", "Pen size", 1, 1, 50, QLineEdit::Normal);
-    drawpanel->setBrushWidth(size);
+    bool correct = false;
+
+    int size = QInputDialog::getInt(this, "Set pen size", "Pen size", 1, 1, 50, 1, &correct);
+
+    if (correct)
+    {
+        drawpanel->setBrushWidth(size);
+    }
+}
+
+void MainWindow::on_actionEraser_triggered()
+{
+    if(ui->actionEraser->isChecked() == true)
+    {
+       drawpanel->setPrevColor(drawpanel->getColor());
+       drawpanel->setColor(Qt::white);
+    }
+    if(ui->actionEraser->isChecked() == false)
+    {
+        drawpanel->setColor(drawpanel->getPrevColor());
+    }
+
 }
 
 
