@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QFileDialog>
 
 class DrawPanel : public QWidget
 {
@@ -20,6 +21,7 @@ public:
 
     void setColor(QColor setColor);
     void setBrushWidth (int setBrushWidth);
+    bool openImage();
 
     QColor getColor();
     QImage getImage();
@@ -36,9 +38,25 @@ public:
     Qt::PenJoinStyle getJoinStyle() const;
     void setJoinStyle(const Qt::PenJoinStyle &value);
 
+    bool getIsRectangle() const;
+    void setIsRectangle(bool value);
+
+    bool getIsCircle() const;
+    void setIsCircle(bool value);
+
+    bool getIsTriangle() const;
+    void setIsTriangle(bool value);
+
+    bool getIsLine() const;
+    void setIsLine(bool value);
+
+    bool getFigureFlag() const;
+    void setFigureFlag(bool value);
+
 private:
     QImage drawPanel;
     QPoint lastPoint;
+    QPoint firstPoint;
     QColor currentColor;
     QColor prevColor;
     Qt::PenStyle penStyle;
@@ -47,6 +65,13 @@ private:
 
     int brushWidth;
     bool isDrawing;
+    bool isRectangle;
+    bool isCircle;
+    bool isTriangle;
+    bool isLine;
+
+
+    bool figureFlag;
 };
 
 #endif // DRAWPANEL_H

@@ -30,5 +30,9 @@ private slots:
     void on_actionPen_size_triggered();
     void on_actionEraser_triggered();
 
+    void on_actionRectangle_triggered();
+    void on_actionCircle_triggered();
+    void on_actionTriangle_triggered();
+    void on_actionOpen_triggered();
 };
 #endif // MAINWINDOW_H

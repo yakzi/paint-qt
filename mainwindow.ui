@@ -50,10 +50,9 @@
      <property name="title">
       <string>Draw...</string>
      </property>
-     <addaction name="actionLine"/>
-     <addaction name="actionCircle_2"/>
-     <addaction name="actionRectangle_2"/>
-     <addaction name="actionTriangle_2"/>
+     <addaction name="actionCircle"/>
+     <addaction name="actionRectangle"/>
+     <addaction name="actionTriangle"/>
     </widget>
     <addaction name="menuDraw"/>
     <addaction name="separator"/>
@@ -107,16 +106,6 @@
     <string>Close</string>
    </property>
   </action>
-  <action name="actionCircle">
-   <property name="text">
-    <string>Draw circle</string>
-   </property>
-  </action>
-  <action name="actionRectangle">
-   <property name="text">
-    <string>Draw rectangle</string>
-   </property>
-  </action>
   <action name="actionFill_with_coor">
    <property name="text">
     <string>Fill with color</string>
@@ -160,22 +149,26 @@
     <string>About PaintQT</string>
    </property>
   </action>
-  <action name="actionLine">
-   <property name="text">
-    <string>Line</string>
+  <action name="actionCircle">
+   <property name="checkable">
+    <bool>true</bool>
    </property>
-  </action>
-  <action name="actionCircle_2">
    <property name="text">
     <string>Circle</string>
    </property>
   </action>
-  <action name="actionRectangle_2">
+  <action name="actionRectangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Rectangle</string>
    </property>
   </action>
-  <action name="actionTriangle_2">
+  <action name="actionTriangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Triangle</string>
    </property>

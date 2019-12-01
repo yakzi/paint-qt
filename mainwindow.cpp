@@ -27,7 +27,7 @@ void MainWindow::on_actionPen_color_triggered()
 void MainWindow::on_actionSave_triggered()
 {
     QImage saveDrawing = drawpanel->getImage();
-    QString filePath = QFileDialog::getSaveFileName(this, "Save Image", "", "PNG (*.png);;JPEG (*.jpg *.jpeg)");
+    QString filePath = QFileDialog::getSaveFileName(this, "Save Image", "", "PNG (*.png);;JPEG (*.jpg *.jpeg);;BMP (*.bmp)");
     saveDrawing.save(filePath);
 }
 
@@ -54,7 +54,75 @@ void MainWindow::on_actionEraser_triggered()
     {
         drawpanel->setColor(drawpanel->getPrevColor());
     }
-
 }
 
+void MainWindow::on_actionRectangle_triggered()
+{
+    if(ui->actionRectangle->isChecked() == true)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        drawpanel->setIsRectangle(true);
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+    }
+    if(ui->actionRectangle->isChecked() == false)
+    {
+       // ui->actionCircle->setChecked(false);
+       // ui->actionTriangle->setChecked(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(true);
+    }
+}
 
+void MainWindow::on_actionCircle_triggered()
+{
+    if(ui->actionCircle->isChecked() == true)
+    {
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        drawpanel->setIsCircle(true);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+    }
+    if(ui->actionCircle->isChecked() == false)
+    {
+       // ui->actionCircle->setChecked(false);
+       // ui->actionTriangle->setChecked(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(true);
+    }
+}
+
+void MainWindow::on_actionTriangle_triggered()
+{
+    if(ui->actionTriangle->isChecked() == true)
+    {
+        ui->actionRectangle->setChecked(false);
+        ui->actionCircle->setChecked(false);
+        drawpanel->setIsTriangle(true);
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsLine(false);
+    }
+    if(ui->actionTriangle->isChecked() == false)
+    {
+       // ui->actionCircle->setChecked(false);
+       // ui->actionTriangle->setChecked(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(true);
+    }
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    drawpanel->openImage();
+}

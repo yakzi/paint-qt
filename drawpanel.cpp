@@ -13,6 +13,11 @@ DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
     setPenStyle(Qt::SolidLine);
     setCapStyle(Qt::RoundCap);
     setJoinStyle(Qt::RoundJoin);
+    setIsLine(true);
+    setIsCircle(false);
+    setIsTriangle(false);
+    setIsRectangle(false);
+    setFigureFlag(false);
 }
 
 DrawPanel::~DrawPanel()
@@ -21,6 +26,11 @@ DrawPanel::~DrawPanel()
 
 void DrawPanel::mousePressEvent(QMouseEvent *event)
 {
+    if(event->button() == Qt::LeftButton && getIsRectangle() && !getFigureFlag())
+    {
+       setFigureFlag(true);
+       firstPoint = event->pos();
+    }
     if (event->button() == Qt::LeftButton)
     {
         lastPoint = event->pos();
@@ -35,8 +45,23 @@ void DrawPanel::mouseMoveEvent(QMouseEvent *event)
         QPainter painter(&drawPanel);
         //TODO: ADD POSSIBILITY TO CHANGE LINE STYLE, AND CAP STYLE
         painter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
-        painter.drawLine(lastPoint, event->pos());
-        //painter.drawRect(event->pos().x(),event->pos().y(),10,10);
+        if(getIsLine())
+        {
+            painter.drawLine(lastPoint, event->pos());
+        }
+        if(getIsCircle())
+        {
+
+        }
+        if(getIsTriangle())
+        {
+
+        }
+        if(getIsRectangle())
+        {
+            painter.drawRect(firstPoint.x(),firstPoint.y(), event->pos().x()-firstPoint.x(),event->pos().y()-firstPoint.y());
+        }
+
         lastPoint = event->pos();
         update();
     }
@@ -47,6 +72,7 @@ void DrawPanel::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         isDrawing = false;
+        setFigureFlag(false);
     }
 }
 
@@ -112,6 +138,56 @@ void DrawPanel::setJoinStyle(const Qt::PenJoinStyle &value)
     joinStyle = value;
 }
 
+bool DrawPanel::getIsRectangle() const
+{
+    return isRectangle;
+}
+
+void DrawPanel::setIsRectangle(bool value)
+{
+    isRectangle = value;
+}
+
+bool DrawPanel::getIsCircle() const
+{
+    return isCircle;
+}
+
+void DrawPanel::setIsCircle(bool value)
+{
+    isCircle = value;
+}
+
+bool DrawPanel::getIsTriangle() const
+{
+    return isTriangle;
+}
+
+void DrawPanel::setIsTriangle(bool value)
+{
+    isTriangle = value;
+}
+
+bool DrawPanel::getIsLine() const
+{
+    return isLine;
+}
+
+void DrawPanel::setIsLine(bool value)
+{
+    isLine = value;
+}
+
+bool DrawPanel::getFigureFlag() const
+{
+    return figureFlag;
+}
+
+void DrawPanel::setFigureFlag(bool value)
+{
+    figureFlag = value;
+}
+
 void DrawPanel::setColor(QColor setColor)
 {
     currentColor = setColor;
@@ -120,6 +196,20 @@ void DrawPanel::setColor(QColor setColor)
 void DrawPanel::setBrushWidth(int setBrushWidth)
 {
     brushWidth = setBrushWidth;
+}
+
+bool DrawPanel::openImage()
+{
+     QString openImageLocation = QFileDialog::getOpenFileName(this, tr("Open image"), "", tr("JPEG (*.jpg *.jpeg);;PNG (*.png);;BMP (*.bmp)" ));
+     if(!openImageLocation.isEmpty())
+     {
+        drawPanel.load(openImageLocation);
+        return true;
+     }
+     else
+     {
+         return false;
+     }
 }
 
 QColor DrawPanel::getColor()
