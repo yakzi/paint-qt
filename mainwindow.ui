@@ -27,12 +27,12 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionClose"/>
+    <addaction name="actionNew"/>
     <addaction name="separator"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="separator"/>
-    <addaction name="actionClose_2"/>
+    <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -86,7 +86,7 @@
     <string>Save</string>
    </property>
   </action>
-  <action name="actionClose">
+  <action name="actionNew">
    <property name="text">
     <string>New</string>
    </property>
@@ -101,7 +101,7 @@
     <string>Pen size</string>
    </property>
   </action>
-  <action name="actionClose_2">
+  <action name="actionClose">
    <property name="text">
     <string>Close</string>
    </property>

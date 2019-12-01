@@ -6,18 +6,7 @@
 
 DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
 {
-    drawPanel = QImage(this->size(), QImage::Format_RGB32);
-    drawPanel.fill(Qt::white);
-    setColor(Qt::black);
-    setBrushWidth(1);
-    setPenStyle(Qt::SolidLine);
-    setCapStyle(Qt::RoundCap);
-    setJoinStyle(Qt::RoundJoin);
-    setIsLine(true);
-    setIsCircle(false);
-    setIsTriangle(false);
-    setIsRectangle(false);
-    setFigureFlag(false);
+    start();
 }
 
 DrawPanel::~DrawPanel()
@@ -210,6 +199,22 @@ bool DrawPanel::openImage()
      {
          return false;
      }
+}
+
+void DrawPanel::start()
+{
+    drawPanel = QImage(this->size(), QImage::Format_RGB32);
+    drawPanel.fill(Qt::white);
+    setColor(Qt::black);
+    setBrushWidth(1);
+    setPenStyle(Qt::SolidLine);
+    setCapStyle(Qt::RoundCap);
+    setJoinStyle(Qt::RoundJoin);
+    setIsLine(true);
+    setIsCircle(false);
+    setIsTriangle(false);
+    setIsRectangle(false);
+    setFigureFlag(false);
 }
 
 QColor DrawPanel::getColor()

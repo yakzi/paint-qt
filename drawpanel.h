@@ -22,6 +22,7 @@ public:
     void setColor(QColor setColor);
     void setBrushWidth (int setBrushWidth);
     bool openImage();
+    void start();
 
     QColor getColor();
     QImage getImage();

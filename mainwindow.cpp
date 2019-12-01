@@ -69,8 +69,6 @@ void MainWindow::on_actionRectangle_triggered()
     }
     if(ui->actionRectangle->isChecked() == false)
     {
-       // ui->actionCircle->setChecked(false);
-       // ui->actionTriangle->setChecked(false);
         drawpanel->setIsRectangle(false);
         drawpanel->setIsCircle(false);
         drawpanel->setIsTriangle(false);
@@ -91,8 +89,6 @@ void MainWindow::on_actionCircle_triggered()
     }
     if(ui->actionCircle->isChecked() == false)
     {
-       // ui->actionCircle->setChecked(false);
-       // ui->actionTriangle->setChecked(false);
         drawpanel->setIsRectangle(false);
         drawpanel->setIsCircle(false);
         drawpanel->setIsTriangle(false);
@@ -113,8 +109,6 @@ void MainWindow::on_actionTriangle_triggered()
     }
     if(ui->actionTriangle->isChecked() == false)
     {
-       // ui->actionCircle->setChecked(false);
-       // ui->actionTriangle->setChecked(false);
         drawpanel->setIsRectangle(false);
         drawpanel->setIsCircle(false);
         drawpanel->setIsTriangle(false);
@@ -125,4 +119,10 @@ void MainWindow::on_actionTriangle_triggered()
 void MainWindow::on_actionOpen_triggered()
 {
     drawpanel->openImage();
+}
+
+void MainWindow::on_actionNew_triggered()
+{
+    drawpanel->start();
+    update();
 }

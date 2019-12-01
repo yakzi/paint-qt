@@ -34,5 +34,6 @@ private slots:
     void on_actionCircle_triggered();
     void on_actionTriangle_triggered();
     void on_actionOpen_triggered();
+    void on_actionNew_triggered();
 };
 #endif // MAINWINDOW_H
