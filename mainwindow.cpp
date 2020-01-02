@@ -60,6 +60,13 @@ void MainWindow::on_actionEraser_triggered()
     {
        drawpanel->setPrevColor(drawpanel->getColor());
        drawpanel->setColor(Qt::white);
+       drawpanel->setIsLine(true);
+       drawpanel->setIsCircle(false);
+       drawpanel->setIsTriangle(false);
+       drawpanel->setIsRectangle(false);
+       ui->actionRectangle->setChecked(false);
+       ui->actionTriangle->setChecked(false);
+       ui->actionCircle->setChecked(false);
     }
     if(ui->actionEraser->isChecked() == false)
     {
