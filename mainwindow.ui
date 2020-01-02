@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuedrt">
@@ -42,6 +42,7 @@
      <string>Customize</string>
     </property>
     <addaction name="actionPen_color"/>
+    <addaction name="actionFill_color"/>
     <addaction name="actionPen_size"/>
     <addaction name="separator"/>
     <addaction name="actionResize"/>
@@ -109,6 +110,9 @@
    </property>
   </action>
   <action name="actionFill_with_coor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Fill with color</string>
    </property>
@@ -178,6 +182,11 @@
   <action name="actionPaste">
    <property name="text">
     <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionFill_color">
+   <property name="text">
+    <string>Fill color</string>
    </property>
   </action>
  </widget>

@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <resizedialog.h>
 
 #include <QDebug>
 
@@ -40,5 +41,8 @@ private slots:
     void on_actionNew_triggered();
     void on_actionClose_triggered();
 
+    void on_actionResize_triggered();
+    void on_actionFill_with_coor_triggered();
+    void on_actionFill_color_triggered();
 };
 #endif // MAINWINDOW_H

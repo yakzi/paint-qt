@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QColorDialog>
+#include <QScrollArea>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -174,5 +175,51 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionClose_triggered()
 {
-    QApplication::quit();
+    int dialog = openDialog();
+    if(dialog == QMessageBox::Yes)
+    {
+       on_actionSave_triggered();
+       QApplication::quit();
+    }
+    else if(dialog == QMessageBox::No)
+    {
+        QApplication::quit();
+    }
+    else if(dialog == QMessageBox::Cancel)
+    {
+        return;
+    }
+}
+
+void MainWindow::on_actionResize_triggered()
+{
+    ResizeDialog resize;
+    resize.setWidth(drawpanel->getImage().width());
+    resize.setHeight(drawpanel->getImage().height());
+    if(resize.exec() == QDialog::Accepted)
+    {
+        int nWidth = resize.getWidth();
+        int nHeight = resize.getHeight();
+
+        drawpanel->resize(nWidth, nHeight);
+    }
+
+}
+
+void MainWindow::on_actionFill_with_coor_triggered()
+{
+    if(ui->actionFill_with_coor->isChecked() == true)
+    {
+        drawpanel->setIsFilling(true);
+    }
+    else if(ui->actionFill_with_coor->isChecked() == false)
+    {
+        drawpanel->setIsFilling(false);
+    }
+}
+
+void MainWindow::on_actionFill_color_triggered()
+{
+    QColor customColor = QColorDialog::getColor(Qt::white, this, QString("Pick a fill color"), QColorDialog::ShowAlphaChannel);
+    drawpanel->setFillColor(customColor);
 }

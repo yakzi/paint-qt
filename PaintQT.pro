@@ -18,14 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     drawpanel.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    resizedialog.cpp
 
 HEADERS += \
     drawpanel.h \
-    mainwindow.h
+    mainwindow.h \
+    resizedialog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    resizedialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
