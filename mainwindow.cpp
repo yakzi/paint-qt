@@ -154,8 +154,22 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::on_actionNew_triggered()
 {
-    drawpanel->start();
-    update();
+    int dialog = openDialog();
+    if(dialog == QMessageBox::Yes)
+    {
+       on_actionSave_triggered();
+       drawpanel->start();
+       update();
+    }
+    else if(dialog == QMessageBox::No)
+    {
+        drawpanel->start();
+        update();
+    }
+    else if(dialog == QMessageBox::Cancel)
+    {
+        return;
+    }
 }
 
 void MainWindow::on_actionClose_triggered()
