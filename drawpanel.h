@@ -24,6 +24,9 @@ public:
     bool openImage();
 
     QImage getImage();
+    void setImage(QImage image);
+
+    void resize(int w, int h);
 
     void setBrushWidth (int setBrushWidth);
 
@@ -54,12 +57,19 @@ public:
     bool getIsLine() const;
     void setIsLine(bool value);
 
+    bool getIsFilling() const;
+    void setIsFilling(bool value);
+
+    QColor getFillColor() const;
+    void setFillColor(const QColor &value);
+
 private:
     QImage drawPanel;
     QPoint lastPoint;
     QPoint firstPoint;
     QColor currentColor;
     QColor prevColor;
+    QColor fillColor;
     Qt::PenStyle penStyle;
     Qt::PenCapStyle capStyle;
     Qt::PenJoinStyle joinStyle;
@@ -70,6 +80,7 @@ private:
     bool isCircle;
     bool isTriangle;
     bool isLine;
+    bool isFilling;
 
     bool mousePressed;
 };
