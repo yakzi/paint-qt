@@ -136,7 +136,20 @@ void MainWindow::on_actionTriangle_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    drawpanel->openImage();
+    int dialog = openDialog();
+    if(dialog == QMessageBox::Yes)
+    {
+       on_actionSave_triggered();
+       drawpanel->openImage();
+    }
+    else if(dialog == QMessageBox::No)
+    {
+        drawpanel->openImage();
+    }
+    else if(dialog == QMessageBox::Cancel)
+    {
+        return;
+    }
 }
 
 void MainWindow::on_actionNew_triggered()
