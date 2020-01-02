@@ -19,13 +19,16 @@ public:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
 
-    void setColor(QColor setColor);
-    void setBrushWidth (int setBrushWidth);
-    bool openImage();
     void start();
 
-    QColor getColor();
+    bool openImage();
+
     QImage getImage();
+
+    void setBrushWidth (int setBrushWidth);
+
+    void setColor(QColor setColor);
+    QColor getColor();
 
     QColor getPrevColor() const;
     void setPrevColor(const QColor &value);
@@ -51,9 +54,6 @@ public:
     bool getIsLine() const;
     void setIsLine(bool value);
 
-    bool getFigureFlag() const;
-    void setFigureFlag(bool value);
-
 private:
     QImage drawPanel;
     QPoint lastPoint;
@@ -71,8 +71,7 @@ private:
     bool isTriangle;
     bool isLine;
 
-
-    bool figureFlag;
+    bool mousePressed;
 };
 
 #endif // DRAWPANEL_H

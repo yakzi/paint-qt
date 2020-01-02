@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QMessageBox>
 
 #include <QDebug>
 
@@ -19,6 +20,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    int openDialog();
 
 private:
     Ui::MainWindow *ui;
@@ -35,5 +38,7 @@ private slots:
     void on_actionTriangle_triggered();
     void on_actionOpen_triggered();
     void on_actionNew_triggered();
+    void on_actionClose_triggered();
+
 };
 #endif // MAINWINDOW_H

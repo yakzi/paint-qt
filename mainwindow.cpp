@@ -18,6 +18,17 @@ MainWindow::~MainWindow()
     delete drawpanel;
 }
 
+int MainWindow::openDialog()
+{
+    QMessageBox dialog(QMessageBox::Question, tr("PaintQT"), tr("Do you want to save changes?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    dialog.setButtonText(QMessageBox::Yes, tr("Yes"));
+    dialog.setButtonText(QMessageBox::No, tr("No"));
+    dialog.setButtonText(QMessageBox::Cancel, tr("Cancel"));
+    dialog.setDefaultButton(QMessageBox::Yes);
+
+    return dialog.exec();
+}
+
 void MainWindow::on_actionPen_color_triggered()
 {
     QColor customColor = QColorDialog::getColor(Qt::white, this, QString("Pick a color"), QColorDialog::ShowAlphaChannel);
@@ -125,4 +136,9 @@ void MainWindow::on_actionNew_triggered()
 {
     drawpanel->start();
     update();
+}
+
+void MainWindow::on_actionClose_triggered()
+{
+    QApplication::quit();
 }

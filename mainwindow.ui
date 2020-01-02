@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>PaintQT</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -40,6 +43,7 @@
     </property>
     <addaction name="actionPen_color"/>
     <addaction name="actionPen_size"/>
+    <addaction name="separator"/>
     <addaction name="actionResize"/>
    </widget>
    <widget class="QMenu" name="menuAdd">
@@ -60,15 +64,13 @@
     <addaction name="actionEraser"/>
     <addaction name="actionZoom"/>
     <addaction name="separator"/>
-    <addaction name="actionCopy"/>
-    <addaction name="actionPaste"/>
     <addaction name="actionCut"/>
+    <addaction name="actionPaste"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
      <string>About</string>
     </property>
-    <addaction name="actionHelp"/>
     <addaction name="actionAbout_PaintQT"/>
    </widget>
    <addaction name="menuedrt"/>
@@ -93,7 +95,7 @@
   </action>
   <action name="actionPen_color">
    <property name="text">
-    <string>Color picker</string>
+    <string>Pen color</string>
    </property>
   </action>
   <action name="actionPen_size">

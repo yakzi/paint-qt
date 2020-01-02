@@ -1,86 +1,193 @@
 #include "drawpanel.h"
+
 #include <QImage>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QPainter>
+
 
 DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
 {
     start();
 }
 
-DrawPanel::~DrawPanel()
+
+DrawPanel::~DrawPanel() {}
+
+
+void DrawPanel::start()
 {
+    drawPanel = QImage(this->size(), QImage::Format_RGB32);
+    drawPanel.fill(Qt::white);
+    setColor(Qt::black);
+    setBrushWidth(1);
+    setPenStyle(Qt::SolidLine);
+    setCapStyle(Qt::RoundCap);
+    setJoinStyle(Qt::RoundJoin);
+    setIsLine(true);
+    setIsCircle(false);
+    setIsTriangle(false);
+    setIsRectangle(false);
+    mousePressed = false;
 }
+
+
+bool DrawPanel::openImage()
+{
+     QString openImageLocation = QFileDialog::getOpenFileName(this, tr("Open image"), "", tr("JPEG (*.jpg *.jpeg);;PNG (*.png);;BMP (*.bmp)" ));
+     if(!openImageLocation.isEmpty())
+     {
+        drawPanel.load(openImageLocation);
+        return true;
+     }
+     else
+     {
+         return false;
+     }
+}
+
 
 void DrawPanel::mousePressEvent(QMouseEvent *event)
 {
-    if(event->button() == Qt::LeftButton && getIsRectangle() && !getFigureFlag())
-    {
-       setFigureFlag(true);
-       firstPoint = event->pos();
-    }
     if (event->button() == Qt::LeftButton)
     {
+        firstPoint = event->pos();
         lastPoint = event->pos();
+
         isDrawing = true;
+        mousePressed = true;
     }
+    update();
 }
+
 
 void DrawPanel::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && isDrawing == true)
+    if ((event->buttons() & Qt::LeftButton) && isDrawing)
     {
-        QPainter painter(&drawPanel);
-        //TODO: ADD POSSIBILITY TO CHANGE LINE STYLE, AND CAP STYLE
-        painter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
-        if(getIsLine())
-        {
-            painter.drawLine(lastPoint, event->pos());
-        }
-        if(getIsCircle())
-        {
-
-        }
-        if(getIsTriangle())
-        {
-
-        }
-        if(getIsRectangle())
-        {
-            painter.drawRect(firstPoint.x(),firstPoint.y(), event->pos().x()-firstPoint.x(),event->pos().y()-firstPoint.y());
-        }
-
         lastPoint = event->pos();
-        update();
     }
+    update();
 }
+
 
 void DrawPanel::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton)
+    if (event->button() == Qt::LeftButton && isDrawing)
     {
         isDrawing = false;
-        setFigureFlag(false);
+        mousePressed = false;
     }
+    update();
 }
 
 
 void DrawPanel::paintEvent(QPaintEvent *event)
 {
-    //QPainter painter(this);
-    //painter.drawImage(event->rect(), drawPanel, drawPanel.rect());
-        QRect dirtyRect = event->rect();
-        QPainter painter(this);
-        painter.drawImage(dirtyRect,drawPanel,dirtyRect);
+    static bool wasMousePressed = false;
+
+    QRect dirtyRect = event->rect();
+    QPainter painter(this);
+    painter.drawImage(dirtyRect, drawPanel, dirtyRect);
+
+    if(mousePressed)
+    {
+        wasMousePressed = true;
+
+        if (getIsCircle())
+        {
+            QPainter circlePainter(this);
+            circlePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            circlePainter.drawEllipse(QRect(firstPoint, lastPoint));
+        }
+        else if (getIsRectangle())
+        {
+            QPainter rectanglePainter(this);
+            rectanglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            rectanglePainter.drawRect(QRect(firstPoint, lastPoint));
+        }
+        else if (getIsTriangle())
+        {
+            QPainter trianglePainter(this);
+            trianglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            QPoint *points = new QPoint[3];
+            points[0] = QPoint(firstPoint.x(), lastPoint.y());
+            points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+            points[2] = QPoint(lastPoint);
+
+            QPolygon polygon;
+            polygon<<points[0]<<points[1]<<points[2];
+            trianglePainter.drawPolygon(polygon);
+        }
+        else
+        {
+            QPainter pencilPainter(&drawPanel);
+            pencilPainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            pencilPainter.drawLine(lastPoint, firstPoint);
+
+            firstPoint = lastPoint;
+        }
+    }
+    else if(wasMousePressed)
+    {
+        QPainter painter(&drawPanel);
+        painter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+
+        if (getIsCircle())
+        {
+            painter.drawEllipse(QRect(firstPoint, lastPoint));
+        }
+        else if (getIsRectangle())
+        {
+            painter.drawRect(QRect(firstPoint, lastPoint));
+        }
+        else if (getIsTriangle())
+        {
+            QPoint *points = new QPoint[3];
+            points[0] = QPoint(firstPoint.x(), lastPoint.y());
+            points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+            points[2] = QPoint(lastPoint);
+
+            QPolygon polygon;
+            polygon<<points[0]<<points[1]<<points[2];
+            painter.drawPolygon(polygon);
+        }
+        else
+        {
+            painter.drawImage(dirtyRect, drawPanel, dirtyRect);
+        }
+
+        wasMousePressed = false;
+    }
+    update();
 }
 
 
 void DrawPanel::resizeEvent(QResizeEvent *event)
 {
-    drawPanel = QImage(this->size(), QImage::Format_RGB32);
-    drawPanel.fill(Qt::white);
+    if (width() != drawPanel.width() || height() != drawPanel.height())
+    {
+        int nWidth, nHeight;
+
+        if (width() > drawPanel.width())
+            nWidth = width();
+        if (width() <= drawPanel.width())
+            nWidth = drawPanel.width();
+        if (height() > drawPanel.height())
+            nHeight = height();
+        if (height() <= drawPanel.height())
+            nHeight = drawPanel.height();
+
+        QPixmap newImage(QSize(nWidth, nHeight));
+        newImage.fill(Qt::white);
+        QPainter painter(&newImage);
+        painter.drawImage(QPoint(0, 0), drawPanel);
+        drawPanel = newImage.toImage();
+
+        update();
+    }
 }
+
 
 QImage DrawPanel::getImage()
 {
@@ -167,16 +274,6 @@ void DrawPanel::setIsLine(bool value)
     isLine = value;
 }
 
-bool DrawPanel::getFigureFlag() const
-{
-    return figureFlag;
-}
-
-void DrawPanel::setFigureFlag(bool value)
-{
-    figureFlag = value;
-}
-
 void DrawPanel::setColor(QColor setColor)
 {
     currentColor = setColor;
@@ -185,36 +282,6 @@ void DrawPanel::setColor(QColor setColor)
 void DrawPanel::setBrushWidth(int setBrushWidth)
 {
     brushWidth = setBrushWidth;
-}
-
-bool DrawPanel::openImage()
-{
-     QString openImageLocation = QFileDialog::getOpenFileName(this, tr("Open image"), "", tr("JPEG (*.jpg *.jpeg);;PNG (*.png);;BMP (*.bmp)" ));
-     if(!openImageLocation.isEmpty())
-     {
-        drawPanel.load(openImageLocation);
-        return true;
-     }
-     else
-     {
-         return false;
-     }
-}
-
-void DrawPanel::start()
-{
-    drawPanel = QImage(this->size(), QImage::Format_RGB32);
-    drawPanel.fill(Qt::white);
-    setColor(Qt::black);
-    setBrushWidth(1);
-    setPenStyle(Qt::SolidLine);
-    setCapStyle(Qt::RoundCap);
-    setJoinStyle(Qt::RoundJoin);
-    setIsLine(true);
-    setIsCircle(false);
-    setIsTriangle(false);
-    setIsRectangle(false);
-    setFigureFlag(false);
 }
 
 QColor DrawPanel::getColor()
