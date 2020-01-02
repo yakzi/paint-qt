@@ -34,7 +34,7 @@ void DrawPanel::start()
 
 bool DrawPanel::openImage()
 {
-     QString openImageLocation = QFileDialog::getOpenFileName(this, tr("Open image"), "", tr("JPEG (*.jpg *.jpeg);;PNG (*.png);;BMP (*.bmp)" ));
+     QString openImageLocation = QFileDialog::getOpenFileName(this, tr("Open image"), "", tr("PNG (*.png);;JPEG (*.jpg *.jpeg);;BMP (*.bmp)" ));
      if(!openImageLocation.isEmpty())
      {
         drawPanel.load(openImageLocation);
