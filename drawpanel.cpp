@@ -251,6 +251,12 @@ void DrawPanel::resize(int w, int h)
     update();
 }
 
+void DrawPanel::clear()
+{
+    drawPanel.fill(Qt::white);
+    update();
+}
+
 QColor DrawPanel::getPrevColor() const
 {
     return prevColor;
@@ -349,6 +355,16 @@ QColor DrawPanel::getFillColor() const
 void DrawPanel::setFillColor(const QColor &value)
 {
     fillColor = value;
+}
+
+QImage DrawPanel::getCopyDrawing() const
+{
+    return copyDrawing;
+}
+
+void DrawPanel::setCopyDrawing(const QImage &value)
+{
+    copyDrawing = value;
 }
 
 void DrawPanel::setColor(QColor setColor)

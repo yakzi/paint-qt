@@ -63,7 +63,6 @@
     <addaction name="separator"/>
     <addaction name="actionFill_with_coor"/>
     <addaction name="actionEraser"/>
-    <addaction name="actionZoom"/>
     <addaction name="separator"/>
     <addaction name="actionCut"/>
     <addaction name="actionPaste"/>
@@ -180,6 +179,9 @@
    </property>
   </action>
   <action name="actionPaste">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Paste</string>
    </property>

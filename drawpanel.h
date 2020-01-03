@@ -28,6 +28,8 @@ public:
 
     void resize(int w, int h);
 
+    void clear();
+
     void setBrushWidth (int setBrushWidth);
 
     void setColor(QColor setColor);
@@ -63,8 +65,12 @@ public:
     QColor getFillColor() const;
     void setFillColor(const QColor &value);
 
+    QImage getCopyDrawing() const;
+    void setCopyDrawing(const QImage &value);
+
 private:
     QImage drawPanel;
+    QImage copyDrawing;
     QPoint lastPoint;
     QPoint firstPoint;
     QColor currentColor;

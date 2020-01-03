@@ -223,3 +223,17 @@ void MainWindow::on_actionFill_color_triggered()
     QColor customColor = QColorDialog::getColor(Qt::white, this, QString("Pick a fill color"), QColorDialog::ShowAlphaChannel);
     drawpanel->setFillColor(customColor);
 }
+
+void MainWindow::on_actionCut_triggered()
+{
+    drawpanel->setCopyDrawing(drawpanel->getImage());
+    drawpanel->clear();
+    ui->actionPaste->setEnabled(true);
+}
+
+void MainWindow::on_actionPaste_triggered()
+{
+    drawpanel->setImage(drawpanel->getCopyDrawing());
+    QPainter painter;
+    painter.drawImage(0,0, drawpanel->getImage());
+}

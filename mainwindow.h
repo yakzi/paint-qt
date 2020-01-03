@@ -44,5 +44,7 @@ private slots:
     void on_actionResize_triggered();
     void on_actionFill_with_coor_triggered();
     void on_actionFill_color_triggered();
+    void on_actionCut_triggered();
+    void on_actionPaste_triggered();
 };
 #endif // MAINWINDOW_H
