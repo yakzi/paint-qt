@@ -7,6 +7,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <resizedialog.h>
+#include <about.h>
 
 #include <QDebug>
 
@@ -46,5 +47,6 @@ private slots:
     void on_actionFill_color_triggered();
     void on_actionCut_triggered();
     void on_actionPaste_triggered();
+    void on_actionAbout_PaintQT_triggered();
 };
 #endif // MAINWINDOW_H

@@ -237,3 +237,9 @@ void MainWindow::on_actionPaste_triggered()
     QPainter painter;
     painter.drawImage(0,0, drawpanel->getImage());
 }
+
+void MainWindow::on_actionAbout_PaintQT_triggered()
+{
+    About about;
+    about.exec();
+}
