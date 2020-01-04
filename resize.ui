@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ResizeDialog</class>
- <widget class="QDialog" name="ResizeDialog">
+ <class>Resize</class>
+ <widget class="QDialog" name="Resize">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>287</width>
-    <height>136</height>
+    <height>122</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,7 +81,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>ResizeDialog</receiver>
+   <receiver>Resize</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -97,7 +97,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>ResizeDialog</receiver>
+   <receiver>Resize</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

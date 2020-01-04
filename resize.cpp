@@ -1,36 +1,36 @@
-#include "resizedialog.h"
-#include "ui_resizedialog.h"
+#include "resize.h"
+#include "ui_resize.h"
 
 
-ResizeDialog::ResizeDialog(QWidget *parent) :
+Resize::Resize(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ResizeDialog)
+    ui(new Ui::Resize)
 {
     ui->setupUi(this);
     ui->height->setValidator( new QIntValidator(1, 5000, this) );
     ui->width->setValidator( new QIntValidator(1, 5000, this) );
 }
-ResizeDialog::~ResizeDialog()
+Resize::~Resize()
 {
     delete ui;
 }
 
-void ResizeDialog::setHeight(int value)
+void Resize::setHeight(int value)
 {
     ui->height->setText(QString::number(value));
 }
 
-void ResizeDialog::setWidth(int value)
+void Resize::setWidth(int value)
 {
     ui->width->setText(QString::number(value));
 }
 
-int ResizeDialog::getHeight() const
+int Resize::getHeight() const
 {
     return ui->height->text().toInt();
 }
 
-int ResizeDialog::getWidth() const
+int Resize::getWidth() const
 {
     return ui->width->text().toInt();
 }

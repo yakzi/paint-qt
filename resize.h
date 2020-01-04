@@ -5,16 +5,16 @@
 #include <QIntValidator>
 
 namespace Ui {
-class ResizeDialog;
+class Resize;
 }
 
-class ResizeDialog : public QDialog
+class Resize : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ResizeDialog(QWidget *parent = nullptr);
-    ~ResizeDialog();
+    explicit Resize(QWidget *parent = nullptr);
+    ~Resize();
 
     int getWidth() const;
     int getHeight() const;
@@ -25,7 +25,7 @@ public:
 private slots:
 
 private:
-    Ui::ResizeDialog *ui;
+    Ui::Resize *ui;
     int width;
     int height;
 };
