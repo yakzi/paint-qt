@@ -64,6 +64,8 @@
     <addaction name="actionFill_with_coor"/>
     <addaction name="actionEraser"/>
     <addaction name="separator"/>
+    <addaction name="actionZoom_2"/>
+    <addaction name="separator"/>
     <addaction name="actionCut"/>
     <addaction name="actionPaste"/>
    </widget>
@@ -189,6 +191,11 @@
   <action name="actionFill_color">
    <property name="text">
     <string>Fill color</string>
+   </property>
+  </action>
+  <action name="actionZoom_2">
+   <property name="text">
+    <string>Zoom</string>
    </property>
   </action>
  </widget>

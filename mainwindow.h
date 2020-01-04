@@ -6,8 +6,9 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
-#include <resizedialog.h>
+#include <resize.h>
 #include <about.h>
+#include <zoom.h>
 
 #include <QDebug>
 
@@ -48,5 +49,6 @@ private slots:
     void on_actionCut_triggered();
     void on_actionPaste_triggered();
     void on_actionAbout_PaintQT_triggered();
+    void on_actionZoom_2_triggered();
 };
 #endif // MAINWINDOW_H

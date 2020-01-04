@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
       drawpanel(new DrawPanel(this))
 {
     ui->setupUi(this);
+    QMainWindow::showFullScreen();
     setCentralWidget(drawpanel);
 }
 
@@ -193,7 +194,7 @@ void MainWindow::on_actionClose_triggered()
 
 void MainWindow::on_actionResize_triggered()
 {
-    ResizeDialog resize;
+    Resize resize;
     resize.setWidth(drawpanel->getImage().width());
     resize.setHeight(drawpanel->getImage().height());
     if(resize.exec() == QDialog::Accepted)
@@ -240,6 +241,25 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionAbout_PaintQT_triggered()
 {
-    About about;
-    about.exec();
+    About aboutDialog;
+    aboutDialog.exec();
+}
+
+void MainWindow::on_actionZoom_2_triggered()
+{
+    Zoom zoomDialog;
+    if(zoomDialog.exec() == QDialog::Accepted)
+    {
+        int zoom = zoomDialog.getZoom();
+
+        int newW = drawpanel->getImage().width() * zoom / 100;
+        int newH = drawpanel->getImage().height() * zoom / 100;
+
+        QImage zoomedImage = drawpanel->getImage();
+
+        drawpanel->clear();
+        drawpanel->resize(newW, newH);
+
+        drawpanel->setImage(zoomedImage.scaled(newW, newH, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+    }
 }

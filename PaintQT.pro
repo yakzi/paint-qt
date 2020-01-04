@@ -20,18 +20,21 @@ SOURCES += \
     drawpanel.cpp \
     main.cpp \
     mainwindow.cpp \
-    resizedialog.cpp
+    resize.cpp \
+    zoom.cpp
 
 HEADERS += \
     about.h \
     drawpanel.h \
     mainwindow.h \
-    resizedialog.h
+    resize.h \
+    zoom.h
 
 FORMS += \
     about.ui \
     mainwindow.ui \
-    resizedialog.ui
+    resize.ui \
+    zoom.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
