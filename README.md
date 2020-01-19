@@ -30,7 +30,7 @@ Draw shapes, fill them with color or erase them. Rescale, and zoom your picture.
 * Qt 5.14.0 
 * C++
 
-Application tested on Android 7.1, 8.0, 9.0
+Application tested on Windows 10
 
 ## Launch
 1. Download [Qt Creator](https://www.qt.io/offline-installers)
