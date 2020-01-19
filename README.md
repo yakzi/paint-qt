@@ -1,7 +1,7 @@
-<p align="center">
+<h1 align="center">
  <strong>PaintQT</strong>
  <br/><br/>
-</p>
+</h1>
 
 
 ## Table of contents
